@@ -15,7 +15,7 @@ price.updated
     return new Response("No event found", { status: 400 });
   }
 
-  let event = stripe.webhooks.constructEvent(
+  const event = stripe.webhooks.constructEvent(
     body,
     request.headers.get("stripe-signature")!,
     process.env.STRIPE_WEBHOOK_SECRET!

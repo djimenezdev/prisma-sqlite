@@ -1,13 +1,13 @@
 "use client";
 
-import { disconnectUserFromPlan } from "@/lib/actions";
+// import { disconnectUserFromPlan } from "@/lib/actions";
 import { Button } from "../ui/button";
 
 const DisconnectPlan = ({
-  user,
+  // user,
   style,
 }: {
-  user: { email: string };
+  // user: { email: string };
   style?: string;
 }) => {
   return (
