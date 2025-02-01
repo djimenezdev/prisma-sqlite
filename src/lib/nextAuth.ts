@@ -101,6 +101,16 @@ export const authOptions: NextAuthOptions = {
             expires_in: number;
             refresh_token?: string;
           };
+          console.log("subsequent login: updated token: ", {
+            ...token,
+            access_token: newTokens.access_token,
+            expires_at: Math.floor(Date.now() / 1000 + newTokens.expires_in),
+            // Some providers only issue refresh tokens once, so preserve if we did not get a new one
+            refresh_token: newTokens.refresh_token
+              ? newTokens.refresh_token
+              : token.refresh_token,
+          });
+
           return {
             ...token,
             access_token: newTokens.access_token,
