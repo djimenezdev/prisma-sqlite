@@ -8,6 +8,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: production
+    env:
+      NEON_POSTGRES_DATABASE_URL: ${{ secrets.NEON_POSTGRES_DATABASE_URL }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -23,5 +25,3 @@ jobs:
         run: pnpm dlx prisma migrate deploy
       - name: Generate Fresh Prisma Client
         run: pnpm dlx prisma generate
-        env:
-          NEON_POSTGRES_DATABASE_URL: ${{ secrets.NEON_POSTGRES_DATABASE_URL }}
