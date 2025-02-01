@@ -22,4 +22,4 @@ jobs:
       - name: Apply all pending migrations to the database
         run: pnpm dlx prisma migrate deploy
         env:
-          DATABASE_URL: ${{ secrets.NEON_POSTGRES_DATABASE_URL }}
+          NEON_POSTGRES_DATABASE_URL: ${{ secrets.NEON_POSTGRES_DATABASE_URL }}
