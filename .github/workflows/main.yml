@@ -1,0 +1,23 @@
+name: Prisma Migrate Deploy PROD
+on:
+  push:
+    paths:
+      - prisma/migrations/** # Only run this workflow when migrations are updated
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+      - name: Install dependencies
+        run: pnpm install
+      - name: Apply all pending migrations to the database
+        run: pnpm dlx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.NEON_POSTGRES_DATABASE_URL }}
